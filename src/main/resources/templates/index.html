@@ -1,198 +1,79 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
+    <title>Navbar Template for Bootstrap</title>
 
-<meta charset="UTF-8">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
-<link rel="apple-touch-icon" type="image/png"
-	href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
-<meta name="apple-mobile-web-app-title" content="CodePen">
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" />
+  </head>
 
-<link rel="shortcut icon" type="image/x-icon"
-	href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+  <body>
 
-<link rel="mask-icon" type=""
-	href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg"
-	color="#111" />
+    <div class="container">
 
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+              <li><a href="../navbar-static-top/">Static top</a></li>
+              <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
 
-<title>CodePen - Bootstrap navbar with collapsible search form</title>
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Navbar example</h1>
+        <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+        </p>
+      </div>
 
-
-<link rel='stylesheet'
-	href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
-<link rel='stylesheet'
-	href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
-
-<style>
-.banner {
-	background: #fff;
-	font-family: Lato, sans-serif;
-}
-
-.navbar-nav-primary {
-	text-transform: uppercase;
-}
-
-.navbar-form-search {
-	position: relative;
-}
-
-.navbar-form-search .form-control {
-	width: 250px;
-}
-
-.navbar-form-search .btn {
-	border: 0;
-	background: transparent;
-	font-size: 18px;
-}
-
-.navbar-form-search .btn:active, .navbar-form-search .btn:hover,
-	.navbar-form-search .btn:focus {
-	color: #000;
-	outline: none;
-	box-shadow: none;
-}
-
-.navbar-form-search .search-form-container {
-	text-align: right;
-	position: absolute;
-	width: 300px;
-	overflow: hidden;
-	background: #fff;
-	right: 60px;
-	top: 0;
-	z-index: 9;
-	transition: all 0.3s ease-in-out;
-}
-
-.navbar-form-search .search-form-container.hdn {
-	width: 0;
-}
-
-.navbar-form-search .search-form-container .search-input-group {
-	width: 300px;
-}
-</style>
-
-<script>
-  window.console = window.console || function(t) {};
-</script>
+    </div> <!-- /container -->
 
 
-
-<script>
-  if (document.location.search.match(/type=embed/gi)) {
-    window.parent.postMessage("resize", "*");
-  }
-</script>
-
-
-</head>
-
-<body translate="no">
-	<nav class="navbar navbar-default banner">
-		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Brand</a>
-			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-
-				<form class="navbar-form navbar-right navbar-form-search"
-					role="search">
-					<div class="search-form-container hdn" id="search-input-container">
-						<div class="search-input-group">
-							<button type="button" class="btn btn-default"
-								id="hide-search-input-container">
-								<span class="glyphicon glyphicon-option-horizontal"
-									aria-hidden="true"></span>
-							</button>
-							<div class="form-group">
-								<input type="text" class="form-control"
-									placeholder="Search for...">
-							</div>
-						</div>
-
-					</div>
-
-					<button type="submit" class="btn btn-default" id="search-button">
-						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					</button>
-				</form>
-				<ul class="nav navbar-nav navbar-right navbar-nav-primary">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Project</a></li>
-					<li><a href="#">Gallery</a></li>
-					<li><a href="#">Publication</a></li>
-					<li><a href="#">Events</a></li>
-					<li><a href="#">News</a></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container-fluid -->
-	</nav>
-	<div class="container box">
-		<div class="col-xs-8">
-			<div id="carouselExampleSlidesOnly" class="carousel slide"
-				data-ride="carousel">
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img class="d-block w-100" src="..." alt="First slide">
-					</div>
-					<div class="carousel-item">
-						<img class="d-block w-100" src="..." alt="Second slide">
-					</div>
-					<div class="carousel-item">
-						<img class="d-block w-100" src="..." alt="Third slide">
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-4"></div>
-	</div>
-	<script
-		src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
-
-	<script
-		src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-	<script
-		src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
-	<script id="rendered-js">
-(function ($) {
-
-  $('#search-button').on('click', function (e) {
-    if ($('#search-input-container').hasClass('hdn')) {
-      e.preventDefault();
-      $('#search-input-container').removeClass('hdn');
-      return false;
-    }
-  });
-
-  $('#hide-search-input-container').on('click', function (e) {
-    e.preventDefault();
-    $('#search-input-container').addClass('hdn');
-    return false;
-  });
-
-})(jQuery);
-//# sourceURL=pen.js
-    </script>
-
-</body>
-
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
 </html>
