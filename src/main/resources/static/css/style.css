@@ -5,4 +5,8 @@ body {
 
 .navbar {
   margin-bottom: 20px;
-}}
+}
+
+.box{
+	border: 1px solid red;
+}
