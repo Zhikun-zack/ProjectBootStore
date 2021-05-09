@@ -28,9 +28,9 @@
 
 		
 		<dependency>
-			<groupId>org.spring-framework.boot</groupId>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
-			<version>${spring-boot.version}</version>
+			<version>${spring-boot-starter.version}</version>
 		</dependency>
 		
 		<dependency>
