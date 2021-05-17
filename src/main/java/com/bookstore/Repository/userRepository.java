@@ -1,5 +1,8 @@
 package com.bookstore.Repository;
 
-public class userRepository {
+import org.springframework.data.repository.CrudRepository;
+import com.bookstore.domain.User;
 
+public class userRepository extends CrudRepository<User, Long>{
+	User findByUsername(String username);
 }
