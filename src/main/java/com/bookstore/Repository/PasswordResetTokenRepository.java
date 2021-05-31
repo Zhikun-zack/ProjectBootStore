@@ -1,4 +1,4 @@
-package com.bookstore.service;
+package com.bookstore.Repository;
 
 import java.util.Date;
 import java.util.stream.Stream;
@@ -16,6 +16,7 @@ public interface PasswordResetTokenRepository extends JpaRepository<PasswordRese
 	
 	Stream<PasswordResetToken> findAllByExpiryDateLessThan(Date now);
 	
+	//delete the expiry token from database 
 	@Modifying
 	@Query("delete from PasswordResetToken t where t.expirydate <= ?1")
 	void deleteAllExpiredSince(Date now);

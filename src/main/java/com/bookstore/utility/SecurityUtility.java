@@ -17,7 +17,7 @@ public class SecurityUtility {
 	}
 	
 	@Bean 
-	public static String randowPassword() {
+	public static String randomPassword() {
 		String SALTCHARS = "ABCDEFGHIGKLMNOPQRSTUVWXYZ1234567890";
 		StringBuilder salt = new StringBuilder();
 		Random rnd = new Random();
