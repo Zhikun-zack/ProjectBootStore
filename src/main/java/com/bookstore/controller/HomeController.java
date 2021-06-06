@@ -1,7 +1,12 @@
 package com.bookstore.controller;
 
 
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
+
+//The servlet container creates an HttpServletRequest object and passes it as an argument to the servlet's service methods (doGet, doPost, etc).
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -9,14 +14,20 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+//Primarily designed for adding attributes to the model. And interaction between java and html frontend
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bookstore.domain.User;
 import com.bookstore.domain.security.PasswordResetToken;
+import com.bookstore.domain.security.Role;
+import com.bookstore.domain.security.UserRole;
 import com.bookstore.service.UserService;
 import com.bookstore.service.impl.UserSecurityService;
+import com.bookstore.utility.SecurityUtility;
 
 @Controller
 public class HomeController {
@@ -50,6 +61,49 @@ public class HomeController {
 		model.addAttribute("classActiveForgetPassword", true);
 		return "myAccount";
 	}
+	//The primary mapping expressed by this annotation.
+	//method: The HTTP request methods to map to, narrowing the primary mapping
+	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
+	public String newUserPost(
+			HttpServletRequest request,
+			//front end html will get the email attribute
+			@ModelAttribute("email") String userEmail,
+			@ModelAttribute("username") String username,
+			Model model
+			) throws Exception{
+		model.addAttribute("classActiveNewAccount", true);
+		model.addAttribute("email", userEmail);
+		model.addAttribute("username", username);
+		
+		//user name exist
+		if(userService.findByUsername(username) != null) {
+			model.addAttribute("usernameExists", true);
+			return "myAccount";
+		}
+		//user email exist
+		if(userService.findByEmail(userEmail) != null) {
+			model.addAttribute("email", true);
+			return "myAccount";
+		}
+		//store user information
+		User user = new User();
+		user.setUsername(username);
+		user.setEmail(userEmail);
+		
+		String password = SecurityUtility.randomPassword();
+		
+		String encryptedPassword = SecurityUtility.passwordEncoder().encode(password)	;
+		user.setPassword(encryptedPassword);
+		
+		Role role = new Role();
+		role.setRoleId(1);
+		role.setName("ROLE_USER");
+		Set<UserRole> userRoles = new HashSet<>();
+		userRoles.add(new UserRole(user, role));
+		userService.createUser(user,userRoles);
+		
+	}
+	
 	@RequestMapping("/newUser")
 	public String newUser(
 			Locale locale,

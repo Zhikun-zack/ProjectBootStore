@@ -5,4 +5,6 @@ import com.bookstore.domain.User;
 
 public class userRepository extends CrudRepository<User, Long>{
 	User findByUsername(String username);
+	
+	User findByEmail(String email);
 }
