@@ -4,6 +4,7 @@ package com.bookstore.controller;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.util.UUID;
 
 //The servlet container creates an HttpServletRequest object and passes it as an argument to the servlet's service methods (doGet, doPost, etc).
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,11 @@ import com.bookstore.utility.SecurityUtility;
 
 @Controller
 public class HomeController {
+	@Autowired
+	private JavaMailSender mailSender;
+	
+	@Autowired
+	private MailConctructor mailConstructor;
 	
 	@Autowired
 	private UserService userService;
@@ -102,6 +108,18 @@ public class HomeController {
 		userRoles.add(new UserRole(user, role));
 		userService.createUser(user,userRoles);
 		
+		String token = UUID.randomUUID().toSTring;
+		userService.createPasswordResetTokenForUser(user, token);
+		
+		String appUrl = "http://" + request.getServerName()+ ":" + request.getServerPort() + request.getContextPath();
+		
+		SimpleMailMessage email = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
+		
+		mailSender.send(email);
+		
+		model.addAttribute("emailSent", "true");
+		
+		return "myAccount"; 
 	}
 	
 	@RequestMapping("/newUser")
