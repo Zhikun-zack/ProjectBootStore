@@ -1,5 +1,9 @@
 package com.bookstore.service.impl;
 
+
+import org.apache.logging.log4j.Logger;
+import org.hibernate.annotations.common.util.impl.Log_.logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +18,8 @@ import com.bookstore.service.UserService;
 //The implementation of UserService, @Override the function in it
 @Service
 public class UserServiceImpl implements UserService{
+	
+	private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -48,7 +54,7 @@ public class UserServiceImpl implements UserService{
 		User localUser = userRepository.findByUsername(user.getUsername());
 		
 		if(localUser != null) {
-			throw new Exception("user already exists, Nothing will be done");
+			LOG.info("user {} already exists, Nothing will be done", user.getUsername());
 			
 		}else {
 			for(UserRole ur: userRoles) {
