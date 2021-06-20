@@ -54,9 +54,9 @@
 
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#">SHOPPING CART <span class="sr-only">(current)</span></a></li>
-						<li><a sec: authorize="isAnonymous()" th:href="@{/userLogin">MY ACCOUNT</a></li>
-						<li><a sec:authorize = "isAuthenticated()" th:href="@{/myProfile">MY ACCOUNT</a></li>
-						<li><a sec: authorize = "isAuthenticated()" href="@{/logout">LOGOUT</a></li>
+						<li><a sec: authorize="isAnonymous()" th:href="@{/userLogin}">MY ACCOUNT</a></li>
+						<li><a sec:authorize = "isAuthenticated()" th:href="@{/myProfile}">MY ACCOUNT</a></li>
+						<li><a sec: authorize = "isAuthenticated()" th:href="@{/logout}">LOGOUT</a></li>
 					</ul>
 				</div>
 			</div>

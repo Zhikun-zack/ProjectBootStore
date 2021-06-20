@@ -63,8 +63,38 @@ public class HomeController {
 		return "myAccount";
 	}
 	@RequestMapping("/forgetPassword")
-	public String forgetPassword (Model model) {
+	public String forgetPassword (
+			HttpServletRequest request,
+			//front end html will get the email attribute
+			@ModelAttribute("email") String email
+			Model model
+			) {
 		model.addAttribute("classActiveForgetPassword", true);
+		
+		User user = userService.findByEmail(email);
+		if(user == null) {
+			model.addAttribute("emailNotExist", true);
+			return "myAccount";
+		}
+		
+		String password = SecurityUtility.randomPassword();
+		
+		String encryptedPassword = SecurityUtility.passwordEncoder().encode(password)	;
+		user.setPassword(encryptedPassword);
+		
+		userService.createUser(user);
+		
+		String token = UUID.randomUUID().toSTring;
+		userService.createPasswordResetTokenForUser(user, token);
+		
+		String appUrl = "http://" + request.getServerName()+ ":" + request.getServerPort() + request.getContextPath();
+		
+		SimpleMailMessage newEmail = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
+		
+		mailSender.send(email);
+		
+		model.addAttribute("forgetPasswordEmailSent", "true");
+		
 		return "myAccount";
 	}
 	//The primary mapping expressed by this annotation.
@@ -88,7 +118,7 @@ public class HomeController {
 		}
 		//user email exist
 		if(userService.findByEmail(userEmail) != null) {
-			model.addAttribute("email", true);
+			model.addAttribute("emailExists", true);
 			return "myAccount";
 		}
 		//store user information
