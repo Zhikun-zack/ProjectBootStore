@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"  xmlns: sec = "http://www.w3.org/1999/xhtml">
 <meta charset="utf-8" />
 <!-- the other html file can invoke this html by invoking the fragment name -->
 <head th:fragment = "common-header" />
@@ -55,8 +55,10 @@
 
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#">SHOPPING CART <span class="sr-only">(current)</span></a></li>
-						<li><a th:href="@{/login}">MY ACCOUNT</a></li>
-						<li><a href="#">LOGOUT</a></li>
+						<!--if user is not logged in the display myAccount, if the user logged in display myProfile -->
+						<li><a sec:authorize = "isAnonymous()" th:href="@{/login}">MY ACCOUNT</a></li>
+						<li><a sec:authorize = "isAuthenticated()" th:href="@{/myProfile}">MY ACCOUNT</a></li>
+						<li><a sec:authorize = "isAuthenticated()" href="@{/logout}">LOGOUT</a></li>
 					</ul>
 				</div>
 			</div>

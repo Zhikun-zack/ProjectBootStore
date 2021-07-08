@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import org.apache.catalina.User;
+import com.bookstore.domain.User;
 
 @Entity
 /*
