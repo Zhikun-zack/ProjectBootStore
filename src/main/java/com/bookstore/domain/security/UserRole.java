@@ -11,7 +11,6 @@ import javax.persistence.Table;
 
 import com.bookstore.domain.User;
 
-//
 @Entity
 @Table(name="user_role")
 public class UserRole {
@@ -20,7 +19,6 @@ public class UserRole {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long userRoleId;
 	
-	//many userRole can have same user 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private User user;
@@ -35,7 +33,7 @@ public class UserRole {
 		this.role = role;
 	}
 
-//Getter and setters
+
 	public Long getUserRoleId() {
 		return userRoleId;
 	}

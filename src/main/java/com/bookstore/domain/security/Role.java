@@ -8,20 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "Role")
 public class Role {
-	
+
 	@Id
 	private int roleId;
 	private String name;
 	
+//	relationship between Role class(this class) and userRole class
 	@OneToMany(mappedBy = "role", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Set<UserRole> userRoles = new HashSet<>();
-	
-//Getters and Setters
+
 	public int getRoleId() {
 		return roleId;
 	}
@@ -45,5 +43,6 @@ public class Role {
 	public void setUserRoles(Set<UserRole> userRoles) {
 		this.userRoles = userRoles;
 	}
+	
 	
 }

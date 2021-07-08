@@ -37,7 +37,6 @@ public class User implements UserDetails{
 	private String phone;
 	private boolean enabled=true;
 	
-	//one userRoles to many user table
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Set<UserRole> userRoles = new HashSet<>();
