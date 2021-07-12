@@ -20,6 +20,7 @@ import com.bookstore.domain.security.Authority;
 import com.bookstore.domain.security.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+//Provides core user information.
 @Entity
 public class User implements UserDetails{
 	
