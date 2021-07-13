@@ -59,16 +59,44 @@ public class HomeController {
 	
 	@RequestMapping("/forgetPassword")
 	public String forgetPassword(
-			
+			HttpServletRequest request,
+			@ModelAttribute("email") String email,
 			Model model) {
 		
 		
 		//if user go to this path, then change the class of forgetpassword div in myAccount.html file 
 		model.addAttribute("classActiveForgetPassword", true);
+		
+		User user = userService.findByEmail(email);
+		
+		if (user  == null) {
+			model.addAttribute("emailNotExist", true);
+			return "myAccount";
+		}
+		
+		String password = SecurityUtility.randomPassword();
+		
+		String encryptedPassword = SecurityUtility.passwordEncoder().encode(password);
+		user.setPassword(encryptedPassword);
+		
+		userService.save(user);
+		
+		String token = UUID.randomUUID().toString();
+		userService.createPasswordResetTokenForUser(user, token);
+		
+		String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort()	 + request.getContextPath();
+		
+		SimpleMailMessage newEmail = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
+		
+		mailSender.send(newEmail);
+		
+		model.addAttribute("forgetPasswordEmailSent", "true");
+		System.out.println(model);
+		
 		return "myAccount";
 	}
 	
-	@RequestMapping(value = "/newUser", method=RequestMethod.POST)
+	@RequestMapping(value="/newUser", method = RequestMethod.POST)
 	public String newUserPost(
 			HttpServletRequest request,
 			@ModelAttribute("email") String userEmail,
@@ -79,15 +107,14 @@ public class HomeController {
 		model.addAttribute("email", userEmail);
 		model.addAttribute("username", username);
 		
-		//checkout whether the user exist
-		if(userService.findByUsername(username) != null ) {
+		if (userService.findByUsername(username) != null) {
 			model.addAttribute("usernameExists", true);
 			
 			return "myAccount";
 		}
-		//checkout whether the user email exist
-		if(userService.findByEmail(userEmail) != null ) {
-			model.addAttribute("email", true);
+		
+		if (userService.findByEmail(userEmail) != null) {
+			model.addAttribute("emailExists", true);
 			
 			return "myAccount";
 		}
@@ -118,6 +145,7 @@ public class HomeController {
 		mailSender.send(email);
 		
 		model.addAttribute("emailSent", "true");
+		System.out.println(model);
 		
 		return "myAccount";
 	}
@@ -148,6 +176,7 @@ public class HomeController {
 		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
+		model.addAttribute("user", user);
 		
 		//if user go to this path, then change the class of login div in myAccount.html file 
 		model.addAttribute("classActiveEdit", true);

@@ -52,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf()
 			.disable().cors().disable()
+//			if fail, redirect to "/login?error" with error as param, then we can use it as a signal for myAccount show some error div window
 			.formLogin().failureUrl("/login?error").defaultSuccessUrl("/")
 			.loginPage("/login").permitAll()
 			.and()

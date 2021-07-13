@@ -59,17 +59,17 @@
 						<div class = "panel-group">
 							<div class = "panel panel-default" style = "border: none;">
 								<div class = "panel-body" style = "background-color: #ededed; margin-top:20px;">
-									<div class = "alert alert-info" th:if="${emailSent}">
-										An email has been sent to the email address you just registered. Please validate your email address and update your password.
+									<div class="alert alert-info" th:if="${emailSent}">
+										An email has been sent to the email address you just registered. Please validate your email address and update your password information.
 									</div>
-									<form th:action="@{/newUser}" method = "post">
+									<form th:action="@{/newUser}" method="post">
 										<div class = "form-group">
-											<label for = "newUsername">* Username: </label>
+											<label for = "newUsername">* Username: </label>&nbsp;<span style = "color: red" th:if="${usernameExists}">Username already exists. Choose a different</span>
 											<input required = "required" type = "text" class = "form-control" id = "newUsername" name = "username"></input>
 											<p style = "color: #828282">Enter your username here.</p>
 										</div>	
 										<div class = "form-group">
-											<label for = "email">* Email Address: </label>
+											<label for = "email">* Email Address: </label>&nbsp;<span style = "color: red" th:if="${emailExists}">Email already exists. Choose a different</span>
 											<input required = "required" type = "text" class = "form-control" id = "email" name = "email"></input>
 											<p style="color: #828282">A valid email address. All
 												emails from the system withll be sent to this address. The
@@ -80,7 +80,6 @@
 										
 										<button type="submit" class="btn btn-primary">Create new account</button>
 									</form>
-									
 									
 								</div>
 							</div>
@@ -94,6 +93,7 @@
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
 									style="background-color: #ededed; margin-top: 20px;">
+									<div th:if="${param.error!=null}" style = "color: red;">Incorrect username or password</div>
 									<form>
 										<div class="form-group">
 											<label for="newUsername">* Username: </label> <input
@@ -122,6 +122,8 @@
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
 									style="background-color: #ededed; margin-top: 20px;">
+									<div th:if="${emailNotExist}" class = "alert alert-danger">Email doesn't exist.</div>
+									<div th:if="${forgetPasswordEmailSent}" class = "alert alert-success">Email sent.</div>
 									<form>
 										<div class="form-group">
 											<label for="recoverEmail">* Your Email: </label> <input

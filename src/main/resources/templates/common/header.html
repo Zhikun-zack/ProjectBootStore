@@ -58,7 +58,7 @@
 						<!--if user is not logged in the display myAccount, if the user logged in display myProfile -->
 						<li><a sec:authorize = "isAnonymous()" th:href="@{/login}">MY ACCOUNT</a></li>
 						<li><a sec:authorize = "isAuthenticated()" th:href="@{/myProfile}">MY ACCOUNT</a></li>
-						<li><a sec:authorize = "isAuthenticated()" href="@{/logout}">LOGOUT</a></li>
+						<li><a sec:authorize = "isAuthenticated()" th:href="@{/logout}">LOGOUT</a></li>
 					</ul>
 				</div>
 			</div>
@@ -66,10 +66,10 @@
 	</div>
 	
 	<div th:fragment = "body-bottom-script">
-		<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- 		<script -->
+<!-- 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<!-- <script -->
+<!-- 	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 	</div>
 	
 </body>
