@@ -28,7 +28,7 @@ public class Book {
 	private int isbn;
 	private double shippingWeight;
 	private double listPrice;
-	private double outPrice;
+	private double ourPrice;
 	private boolean active = true;
 	
 	//Specifies the mapped column for a persistent property or field.  If no Column annotation is specified, then the filed names will be used for mapping
@@ -136,12 +136,12 @@ public class Book {
 		this.listPrice = listPrice;
 	}
 
-	public double getOutPrice() {
-		return outPrice;
+	public double getOurPrice() {
+		return ourPrice;
 	}
 
-	public void setOutPrice(double outPrice) {
-		this.outPrice = outPrice;
+	public void setOurPrice(double ourPrice) {
+		this.ourPrice = ourPrice;
 	}
 
 	public boolean isActive() {
