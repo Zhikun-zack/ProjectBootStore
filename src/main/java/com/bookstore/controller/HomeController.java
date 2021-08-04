@@ -1,5 +1,7 @@
 package com.bookstore.controller;
 
+import java.security.Principal;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -7,6 +9,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -195,5 +198,26 @@ public class HomeController {
 		model.addAttribute("bookList", bookList);
 		
 		return "bookshelf";
+	}
+	
+	@RequestMapping("/bookDetail")
+	public String bookDetail(
+			@PathParam("id") Long id, Model model, Principal principal
+			) {
+		if(principal != null) {
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user",  user);
+		}
+		Book book = bookService.findOne(id);
+		
+		model.addAttribute("book", book);
+		
+		List<Integer> qtyList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+		
+		model.addAttribute("qtyList", qtyList);
+		model.addAttribute("qty", 1);
+		
+		return "bookDetail";
 	}
 }
