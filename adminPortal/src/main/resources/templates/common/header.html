@@ -7,15 +7,19 @@
 
 <title>Le's Bookstore</title>
 
-<!-- Bootstrap core CSS -->
-<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
 
-<!-- Custom styles for this template -->
-<link th:href="@{/css/style.css}" rel="stylesheet" />
-
-<link rel="icon" href="/image/applie-touch-icon.png" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+<link rel = "icon" href = "/image/apple-touch-icon.png" >
 <style>.navbar-default {
-        background-color: #a32222 !important;
+        background-color: #a32222;
         border-color: #293872;
     }
 
@@ -99,6 +103,7 @@
         }
     }</style>
 </head>
+
 <body>
 	<div th:fragment="navbar">
 	
@@ -117,10 +122,10 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
+						<li class="dropdown"><a href="#" class="btn btn-secondary dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
 							aria-expanded="false">Book <span class="caret"></span></a>
-							<ul class="dropdown-menu">
+							<ul class="dropdown-menu" aria-labelledby = "dLabel">
 								<li><a th:href="@{/book/add}">Add a new book</a></li>
 								<li><a th:href="@{/book/bookList}">View book list</a></li>
 							</ul></li>
@@ -135,10 +140,10 @@
 			<!-- /.container-fluid -->
 		</nav>
 	</div>
-
 	<div th:fragment="body-bottom-scripts">
 		<script th:src="@{/js/jquery.min.js}"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
 	</div>
+
 </body>
 </html>

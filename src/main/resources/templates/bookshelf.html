@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th = "http://www.w3.org/1000/xhtml">
+<head  th:replace= "common/header :: common-header"/>
+<meta charset="utf-8" />
+<title>Bootstrap</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">	
+<link rel = "icon" href = "/image/apple-touch-icon.png" >
+</head>
+<body>
+	<div th:replace="common/header :: navbar"></div>
+	
+	<div class="container">
+		<div class="row" style="margin-bottom: -100px;">
+			<div class="col-xs-8">
+				<h2 class="section-headline">
+					<h2 class = "section-headline"><span th:text="${user} ? ${#strings.toIpperCase(user.username)} : 'All Books"></span></h2>
+				</h2>
+			</div>
+			<div class="col-xs-4">
+				<img src="/image/logo.png" class="img-responsive" />
+			</div>
+		</div>
+
+		<hr
+			style="position: absolute; width: 100%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;" />
+		<img class="img-responsive" src="/image/shelf.png" style="margin-top: -75px;"/>
+			
+		<div class = "row" style = "margin-top: 60px">
+			<div class = "col-xs-9 col-xs-offset-3">
+				<div th:if="${emptyList}">
+					<h5 style="font-style: italic;">Oops, no result is found. Try something else or try again later.</h5>
+				</div>
+				
+				<table border = "0" id = "bookList">
+					<thead><tr><th></th></tr></thead>
+					<tbody>
+						<tr class = "book-item" data-th-each = "book: ${bookList}">
+							<td>
+								<div th:if="${book != null}">
+									<div class = "row">
+										<div class = "col-xs-3">
+										<!-- Read the static image from the path, adminPath is definded in  messages.properties-->
+											<img class = "img-responsive shelf-book" th:src="#{adminPath} + @{/image/book} + ${book.id}+'.png'"/>
+										</div>
+										<div class = "col-xs-9">
+											<h4 th:text="book.title"></h4>
+											<span the:text="${book.publicationDate}"></span>
+											<span th:text = "book.author"></span>
+											<span th:text = "${#strings.capitalize(book.format)}"></span>
+											<span th:text = "${book.numberOfPages"><span> pages</span></span>
+											<span style = "font-size: x-large; color: #db3208; ">$<span
+											th:text="${#numbers.formatDecimal(book.ourPrice, 0, 'COMMA', 2, 'POINT' )}"></span></span>
+											
+											<span style = "text-decoration: line-through;">$<span
+											th:text="${#numbers.formatDecimal(book.listPrice, 0, 'COMMA', 2, 'POINT' )}"></span></span>
+											<!-- thymleaf API for shortten the decription of the book, make is less than 500 -->
+											<p th:text= "${#strings.abbreviate(book.decription, 500)}"></p>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+			</div>
+		</div>
+	</div>
+	<!-- end of container -->
+	
+</body>
+</html>
