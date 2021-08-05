@@ -1,15 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
 <head th:replace="common/header :: common-header" />
 
 <body>
 	<div th:replace="common/header :: navbar" />
+
 	<div class="container">
 		<div class="row">
-		<!-- enctype is for define the data type that you w"D:/Download/adminportal/src/main/resources/templates/addBook.html"ill upload in form -->
-		<form class="form-horizontal" th:action="@{/book/add}" method="post" enctype="multipart/form-data">
-		<!--The <fieldset> HTML element is used to group several controls as well as labels (<label>) within a web form.  -->
-		<fieldset>
+			<form class="form-horizontal" th:action="@{/book/add}" method="post"
+				enctype="multipart/form-data">
+				<fieldset>
 					<legend class="center-block">
 						New Book Information<span style="font-size: small"> * is a
 							required field</span>
@@ -139,7 +140,7 @@
 							Weight</label>
 						<div class="col-md-8">
 							<div class="input-group">
-								<input th:value="${book.shippingWeight}" type="number" step = "0.01"
+								<input th:value="${book.shippingWeight}" type="number" step="0.01"
 									name="shippingWeight" class="form-control" id="shippingWeight"
 									placeholder="Shipping Weight" /> <span
 									class="input-group-addon">Ounces</span>
@@ -155,7 +156,7 @@
 						<div class="col-md-8">
 							<div class="input-group">
 								<span class="input-group-addon">$</span> <input
-									th:value="${book.listPrice}" type="number" name="listPrice" step = "0.01"
+									th:value="${book.listPrice}" type="number" name="listPrice" step="0.01"
 									class="form-control" id="listPrice" placeholder="List Price" />
 							</div>
 							<span class="help-block">List price of the book</span>
@@ -169,7 +170,7 @@
 						<div class="col-md-8">
 							<div class="input-group">
 								<span class="input-group-addon">$</span> <input
-									th:value="${book.ourPrice}" type="number" name="ourPrice" step = "0.01"
+									th:value="${book.ourPrice}" type="number" name="ourPrice" step="0.01"
 									class="form-control" id="ourPrice" placeholder="Our Price" />
 							</div>
 							<span class="help-block">Our price of the book</span>
@@ -206,7 +207,7 @@
 						<div class="col-md-8">
 							<textarea name="description" rows="5" class="form-control"
 								id="description" th:value="${book.description}"
-								placeholder="Description" ></textarea>
+								placeholder="Description" > </textarea>
 							<span class="help-block">Description of the book</span>
 						</div>
 					</div>
@@ -234,5 +235,7 @@
 		</div>
 	</div>
 
+
+	<div th:replace="common/header :: body-bottom-scripts" />
 </body>
 </html>

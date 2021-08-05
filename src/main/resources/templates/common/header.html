@@ -20,6 +20,9 @@
 	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel = "icon" href = "/image/apple-touch-icon.png" >
+<!-- Data table -->
+<link th:href="@{/css/jquery.dataTables.min.css}" rel = "stylesheet" />
+<link th:href="@{/css/dataTables.bootstrap.min.css}" rel = "stylesheet" />
 </head>
 <body>
 	<div th:fragment = "navbar">
@@ -70,6 +73,10 @@
 <!-- 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <!-- <script -->
 <!-- 	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+		<!-- Data table -->
+		<script th:src = "@{/js/jquery.dataTables.min.js}"></script>
+		<script th:src = "@{/js/dataTables.bootstrap.min.js}"></script>
 	</div>
 	
 </body>

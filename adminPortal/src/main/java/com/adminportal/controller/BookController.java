@@ -64,7 +64,7 @@ public class BookController {
 	
 	@RequestMapping("/bookInfo")
 	public String bookInfo(@RequestParam("id") Long id, Model model) {
-		Book book = bookService.findOne(id);
+		Book book = bookService.findById(id);
 		model.addAttribute("book", book);
 		
 		return "bookInfo";
@@ -72,9 +72,10 @@ public class BookController {
 	
 	@RequestMapping("/updateBook")
 	public String updateBook(@RequestParam("id") Long id, Model model) {
-		List<Book> bookList = bookService.findAll();
-		model.addAttribute("bookList", bookList);
-		return "bookList";
+		Book book = bookService.findById(id);
+		model.addAttribute("book", book);
+		
+		return "updateBook";
 	}
 	
 	@RequestMapping(value = "/updateBook", method = RequestMethod.POST)
@@ -86,17 +87,17 @@ public class BookController {
 		if(!bookImage.isEmpty()) {
 			try {
 				byte[] bytes = bookImage.getBytes();
-				String name = book.getId()+".png";
+				String name = book.getId() + ".png";
 				
-				//delete the previous image and update the new one
 				Files.delete(Paths.get("src/main/resources/static/image/book/"+name));
 				
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/image/book/" + name)));
+				BufferedOutputStream stream = new BufferedOutputStream(
+						new FileOutputStream(new File("src/main/resources/static/image/book/" + name)));
 				stream.write(bytes);
 				stream.close();
-		    }catch (Exception e) {
-		    	e.printStackTrace();
-		    }
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return "redirect:/book/bookInfo?id="+book.getId();

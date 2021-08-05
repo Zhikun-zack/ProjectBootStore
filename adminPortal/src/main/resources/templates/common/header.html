@@ -20,6 +20,10 @@
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <link rel="stylesheet" href="/css/style.css">
 <link rel = "icon" href = "/image/apple-touch-icon.png" >
+
+<!-- Data table -->
+<link th:href="@{/css/jquery.dataTables.min.css}" rel = "stylesheet" />
+<link th:href="@{/css/dataTables.bootstrap.min.css}" rel = "stylesheet" />
 <style>.navbar-default {
         background-color: #a32222;
         border-color: #293872;
@@ -145,6 +149,10 @@
 	<div th:fragment="body-bottom-scripts">
 		<script th:src="@{/js/jquery.min.js}"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
+		
+		<!-- Data table -->
+		<script th:src = "@{/js/jquery.dataTables.min.js}"></script>
+		<script th:src = "@{/js/dataTables.bootstrap.min.js}"></script>
 	</div>
 
 </body>

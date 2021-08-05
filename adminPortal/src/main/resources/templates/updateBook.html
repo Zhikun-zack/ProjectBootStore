@@ -16,8 +16,8 @@
 							required field</span>
 					</legend>
 					
-					<!-- append hidden previous id to data base so hibernate will regard this record as the same as the old record and will update the different value instead of create a total new record -->
-					<input hidden = "hidden" name = "id" th:value = "${book.id}" />
+					<input hidden="hidden" name="id" th:value="${book.id}" />
+
 
 					<!-- title -->
 					<div class="form-group">
@@ -142,7 +142,7 @@
 							Weight</label>
 						<div class="col-md-8">
 							<div class="input-group">
-								<input th:value="${book.shippingWeight}" type="number" step = "0.01"
+								<input th:value="${book.shippingWeight}" type="number" step="0.01"
 									name="shippingWeight" class="form-control" id="shippingWeight"
 									placeholder="Shipping Weight" /> <span
 									class="input-group-addon">Ounces</span>
@@ -158,7 +158,7 @@
 						<div class="col-md-8">
 							<div class="input-group">
 								<span class="input-group-addon">$</span> <input
-									th:value="${book.listPrice}" type="number" name="listPrice" step = "0.01"
+									th:value="${book.listPrice}" type="number" name="listPrice" step="0.01"
 									class="form-control" id="listPrice" placeholder="List Price" />
 							</div>
 							<span class="help-block">List price of the book</span>
@@ -172,7 +172,7 @@
 						<div class="col-md-8">
 							<div class="input-group">
 								<span class="input-group-addon">$</span> <input
-									th:value="${book.ourPrice}" type="number" name="ourPrice" step = "0.01"
+									th:value="${book.ourPrice}" type="number" name="ourPrice" step="0.01"
 									class="form-control" id="ourPrice" placeholder="Our Price" />
 							</div>
 							<span class="help-block">Our price of the book</span>
@@ -238,6 +238,6 @@
 	</div>
 
 
-	<div th:replace="common/header :: body-bottom-scripts" />
+	<!--  <div th:replace="common/header :: body-bottom-scripts" />-->
 </body>
 </html>
