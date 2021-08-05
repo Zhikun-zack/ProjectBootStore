@@ -1,20 +1,23 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
 <head th:replace="common/header :: common-header" />
 
 <body>
 	<div th:replace="common/header :: navbar" />
+
 	<div class="container">
 		<div class="row">
-		<!-- enctype is for define the data type that you w"D:/Download/adminportal/src/main/resources/templates/addBook.html"ill upload in form -->
-		<form class="form-horizontal" th:action="@{/book/add}" method="post" enctype="multipart/form-data">
-		<!--The <fieldset> HTML element is used to group several controls as well as labels (<label>) within a web form.  -->
-		<fieldset>
+			<form class="form-horizontal" th:action="@{/book/updateBook}" method="post"
+				enctype="multipart/form-data">
+				<fieldset>
 					<legend class="center-block">
-						New Book Information<span style="font-size: small"> * is a
+						Update Book Information<span style="font-size: small"> * is a
 							required field</span>
 					</legend>
-
+					
+					<!-- append hidden previous id to data base so hibernate will regard this record as the same as the old record and will update the different value instead of create a total new record -->
+					<input hidden = "hidden" name = "id" th:value = "${book.id}" />
 
 					<!-- title -->
 					<div class="form-group">
@@ -205,8 +208,8 @@
 						<label class="col-md-2 control-label" for="description">Description</label>
 						<div class="col-md-8">
 							<textarea name="description" rows="5" class="form-control"
-								id="description" th:value="${book.description}"
-								placeholder="Description" ></textarea>
+								id="description" th:value="${book.description}" th:text="${book.description}"
+								placeholder="Description" />
 							<span class="help-block">Description of the book</span>
 						</div>
 					</div>
@@ -225,8 +228,8 @@
 					<div class="form-group">
 						<div class="col-md-2"></div>
 						<div class="col-md-8">
-							<button type="submit" class="btn btn-success">Add Book</button>
-							<a class="btn btn-danger" th:href="@{/}">Cancel</a>
+							<button type="submit" class="btn btn-success">Update Book</button>
+							<a class="btn btn-danger" th:href="@{/book/bookInfo(id=${book.id})}">Cancel</a>
 						</div>
 					</div>
 				</fieldset>
@@ -234,5 +237,7 @@
 		</div>
 	</div>
 
+
+	<div th:replace="common/header :: body-bottom-scripts" />
 </body>
 </html>

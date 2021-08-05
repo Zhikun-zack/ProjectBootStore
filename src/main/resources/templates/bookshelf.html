@@ -27,7 +27,7 @@
 		<div class="row" style="margin-bottom: -100px;">
 			<div class="col-xs-8">
 				<h2 class="section-headline">
-					<h2 class = "section-headline"><span th:text="${user} ? ${#strings.toIpperCase(user.username)} : 'All Books"></span></h2>
+					<h2 class = "section-headline"><span th:text="${user} ? ${#strings.toUpperCase(user.username)} : 'All Books'"></span></h2>
 				</h2>
 			</div>
 			<div class="col-xs-4">
@@ -61,14 +61,14 @@
 											<span the:text="${book.publicationDate}"></span>
 											<p th:text = "${book.author}"></p>
 											<a th:href = "@{/bookDetail?id=}+${book.id}"><span th:text = "${#strings.capitalize(book.format)}"></span></a>
-											<span th:text = "${book.numberOfPages"><span> pages</span></span>
+											<span th:text = "${book.numberOfPages"><span> pages</span></span><br />
 											<a th:href = "@{/bookDetail?id=}+${book.id}"><span style = "font-size: x-large; color: #db3208; ">$<span
 											th:text="${#numbers.formatDecimal(book.ourPrice, 0, 'COMMA', 2, 'POINT' )}"></span></span></a>
 											
 											<span style = "text-decoration: line-through;">$<span
 											th:text="${#numbers.formatDecimal(book.listPrice, 0, 'COMMA', 2, 'POINT' )}"></span></span>
 											<!-- thymleaf API for shortten the decription of the book, make is less than 500 -->
-											<p th:text= "${#strings.abbreviate(book.decription, 500)}"></p>
+											<p th:utext= "${#strings.abbreviate(book.decription, 1000)}"></p>
 										</div>
 									</div>
 								</div>

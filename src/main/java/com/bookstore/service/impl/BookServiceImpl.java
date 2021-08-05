@@ -1,6 +1,7 @@
 package com.bookstore.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,8 @@ public class BookServiceImpl implements BookService{
 	}
 	
 	public Book findOne(Long id) {
-		return bookRepository.findOne(id);
+		//CrudRepository findOne has been changed to findById
+		return bookRepository.findById(id).orElse(null);
 	}
 
 }
