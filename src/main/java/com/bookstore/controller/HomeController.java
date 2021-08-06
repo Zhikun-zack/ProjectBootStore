@@ -179,6 +179,7 @@ public class HomeController {
 		model.addAttribute("user", user);
 		
 		model.addAttribute("addNewCreditCard", true);
+		//define whether we should display billing window
 		model.addAttribute("classActiveBilling", true);
 		model.addAttribute("listOfShippingAddresses", true);
 		
@@ -206,11 +207,13 @@ public class HomeController {
 		model.addAttribute("user", user);
 		
 		model.addAttribute("addNewShippingAddress", true);
+		//define whether we should display shipping window
 		model.addAttribute("classActiveShipping", true);
+		model.addAttribute("listOfCreditCards", true);
 		
 		UserShipping userShipping = new UserShipping();
 		
-		model.addAttribute("userShipping", UserShipping);
+		model.addAttribute("userShipping", userShipping);
 		
 		List<String> stateList = USConstants.listOfUSStatesCode;
 		Collections.sort(stateList);
