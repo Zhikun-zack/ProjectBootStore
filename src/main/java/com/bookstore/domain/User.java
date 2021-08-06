@@ -21,7 +21,6 @@ import com.bookstore.domain.security.Authority;
 import com.bookstore.domain.security.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-//Provides core user information.
 @Entity
 public class User implements UserDetails{
 	
@@ -39,8 +38,10 @@ public class User implements UserDetails{
 	private String phone;
 	private boolean enabled=true;
 	
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<UserShipping> userShippingList;
+	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<UserPayment> userPaymentList;
@@ -101,6 +102,9 @@ public class User implements UserDetails{
 	public void setUserRoles(Set<UserRole> userRoles) {
 		this.userRoles = userRoles;
 	}
+	
+	
+	
 	public List<UserShipping> getUserShippingList() {
 		return userShippingList;
 	}
