@@ -1,21 +1,24 @@
 package com.adminportal.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Book {
-	
+
 	@Id
-	//applied to a primary key property 
-	//AUTO Indicates that the persistence provider should pick an appropriate strategy for the particular database
-	@GeneratedValue(strategy = GenerationType.AUTO )
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String title;
 	private String author;
@@ -29,16 +32,19 @@ public class Book {
 	private double shippingWeight;
 	private double listPrice;
 	private double ourPrice;
-	private boolean active = true;
+	private boolean active=true;
 	
-	//Specifies the mapped column for a persistent property or field.  If no Column annotation is specified, then the filed names will be used for mapping
-	//columnDefinition define the type of the column, default is ""
-	@Column(columnDefinition = "text")
+	@Column(columnDefinition="text")
 	private String description;
 	private int inStockNumber;
 	
 	@Transient
 	private MultipartFile bookImage;
+	
+	
+	@OneToMany(mappedBy = "book")
+	@JsonIgnore
+	private List<BookToCartItem> bookToCartItemList;
 
 	public Long getId() {
 		return id;
@@ -174,6 +180,14 @@ public class Book {
 
 	public void setBookImage(MultipartFile bookImage) {
 		this.bookImage = bookImage;
+	}
+
+	public List<BookToCartItem> getBookToCartItemList() {
+		return bookToCartItemList;
+	}
+
+	public void setBookToCartItemList(List<BookToCartItem> bookToCartItemList) {
+		this.bookToCartItemList = bookToCartItemList;
 	}
 	
 	

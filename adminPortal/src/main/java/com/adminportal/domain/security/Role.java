@@ -16,7 +16,6 @@ public class Role {
 	private int roleId;
 	private String name;
 	
-//	relationship between Role class(this class) and userRole class
 	@OneToMany(mappedBy = "role", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Set<UserRole> userRoles = new HashSet<>();
 
