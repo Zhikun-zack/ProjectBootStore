@@ -28,6 +28,22 @@ public class ShoppingCart {
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 	
+	public List<CartItem> getCartItemList() {
+		return cartItemList;
+	}
+
+	public void setCartItemList(List<CartItem> cartItemList) {
+		this.cartItemList = cartItemList;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public Long getId() {
 		return id;
 	}

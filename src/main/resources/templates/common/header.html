@@ -54,7 +54,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">SHOPPING CART <span class="sr-only">(current)</span></a></li>
+						<li><a th:href="@{/shoppingCart/cart}">SHOPPING CART <span class="sr-only">(current)</span></a></li>
 						<!--if user is not logged in the display myAccount, if the user logged in display myProfile -->
 						<li><a sec:authorize="isAnonymous()" th:href="@{/login}">MY ACCOUNT</a></li>
 						<li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">MY ACCOUNT</a></li>

@@ -14,16 +14,9 @@ import javax.persistence.OneToOne;
 import com.bookstore.domain.User;
 
 @Entity
-/*
- * This is a class to represent the table in MySQL called passwordresetToken
- * It has three columns:
- * 		user PK and FK
- * 		token
- * 		expiryDate
- * It has one to one relationship with User table
- */
 public class PasswordResetToken {
-	private static final int EXPIRATION = 60*24;
+
+	private static final int EXPIRATION = 60 * 24;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,22 +25,22 @@ public class PasswordResetToken {
 	private String token;
 	
 	@OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-	@JoinColumn(nullable = false, name = "user_id")
+	@JoinColumn(nullable=false, name="user_id")
 	private User user;
 	
 	private Date expiryDate;
 	
-	public PasswordResetToken() {}
+	public PasswordResetToken(){}
 	
 	public PasswordResetToken(final String token, final User user) {
-		super();
+		super ();
 		
-		this.token = token; 
+		this.token = token;
 		this.user = user;
 		this.expiryDate = calculateExpiryDate(EXPIRATION);
 	}
 	
-	private Date calculateExpiryDate( final int expiryTimeInMinutes) {
+	private Date calculateExpiryDate (final int expiryTimeInMinutes) {
 		final Calendar cal = Calendar.getInstance();
 		cal.setTimeInMillis(new Date().getTime());
 		cal.add(Calendar.MINUTE, expiryTimeInMinutes);
@@ -57,13 +50,6 @@ public class PasswordResetToken {
 	public void updateToken(final String token) {
 		this.token = token;
 		this.expiryDate = calculateExpiryDate(EXPIRATION);
-		
-	}
-
-	@Override
-	public String toString() {
-		return "PasswordResetToken [id=" + id + ", token=" + token + ", user=" + user + ", expiryDate=" + expiryDate
-				+ "]";
 	}
 
 	public Long getId() {
@@ -101,4 +87,12 @@ public class PasswordResetToken {
 	public static int getExpiration() {
 		return EXPIRATION;
 	}
+
+	@Override
+	public String toString() {
+		return "PasswordResetToken [id=" + id + ", token=" + token + ", user=" + user + ", expiryDate=" + expiryDate
+				+ "]";
+	}
+	
+	
 }
