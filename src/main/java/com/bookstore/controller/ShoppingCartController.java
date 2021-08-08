@@ -48,7 +48,7 @@ public class ShoppingCartController {
 		
 		return "shoppingCart";
 	}
-/**
+
 	@RequestMapping("/addItem")
 	public String addItem(
 			@ModelAttribute("book") Book book,
@@ -68,5 +68,4 @@ public class ShoppingCartController {
 		
 		return "forward:/bookDetail?id="+book.getId();
 	}
-	*/
 }

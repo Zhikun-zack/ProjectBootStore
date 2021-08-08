@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.bookstore.domain.User;
 import com.bookstore.domain.security.Role;
@@ -15,6 +16,7 @@ import com.bookstore.service.UserService;
 import com.bookstore.utility.SecurityUtility;
 
 @SpringBootApplication
+@EnableTransactionManagement
 public class BookStoreNewApplication implements CommandLineRunner {
 	
 	@Autowired

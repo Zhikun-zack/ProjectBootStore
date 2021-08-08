@@ -38,7 +38,7 @@ public class Book {
 	
 	//Specifies the mapped column for a persistent property or field.  If no Column annotation is specified, then the filed names will be used for mapping
 	//columnDefinition define the type of the column, default is ""
-	@Column(columnDefinition = "text")
+	@Column(columnDefinition="text")
 	private String description;
 	private int inStockNumber;
 	

@@ -13,7 +13,8 @@ import com.bookstore.service.CartItemService;
 import com.bookstore.service.ShoppingCartService;
 
 @Service
-public class ShopingCartServiceImpl implements ShoppingCartService{
+public class ShoppingCartServiceImpl implements ShoppingCartService{
+	
 	@Autowired
 	private CartItemService cartItemService;
 	
@@ -25,8 +26,8 @@ public class ShopingCartServiceImpl implements ShoppingCartService{
 		
 		List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
 		
-		for(CartItem cartItem: cartItemList) {
-			if(cartItem.getBook().getInStockNumber()> 0) {
+		for (CartItem cartItem : cartItemList) {
+			if(cartItem.getBook().getInStockNumber() > 0) {
 				cartItemService.updateCartItem(cartItem);
 				cartTotal = cartTotal.add(cartItem.getSubtotal());
 			}
@@ -38,4 +39,5 @@ public class ShopingCartServiceImpl implements ShoppingCartService{
 		
 		return shoppingCart;
 	}
+
 }
