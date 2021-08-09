@@ -1,18 +1,23 @@
 package com.bookstore.controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bookstore.domain.BillingAddress;
 import com.bookstore.domain.CartItem;
+import com.bookstore.domain.Order;
 import com.bookstore.domain.Payment;
 import com.bookstore.domain.ShippingAddress;
 import com.bookstore.domain.ShoppingCart;
@@ -29,6 +34,7 @@ import com.bookstore.service.ShoppingCartService;
 import com.bookstore.service.UserPaymentService;
 import com.bookstore.service.UserService;
 import com.bookstore.service.UserShippingService;
+import com.bookstore.utility.MailConstructor;
 import com.bookstore.utility.USConstants;
 
 @Controller
@@ -40,6 +46,9 @@ public class CheckoutController {
 	
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	private MailConstructor mailConstructor;
 	
 	@Autowired
 	private UserService userService;

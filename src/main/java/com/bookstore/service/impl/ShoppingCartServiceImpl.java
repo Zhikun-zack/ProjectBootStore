@@ -39,5 +39,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
 		
 		return shoppingCart;
 	}
+	
+	public void clearShoppingCart(ShoppingCart shoppingCart) {
+		List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
+		
+		//set all elements in cartItemlist to null and save 
+		for (CartItem cartItem : cartItemList) {
+			cartItem.setShoppingCart(null);
+			cartItemService.save(cartItem);
+		}
+		
+		shoppingCart.setGrandTotal(new BigDecimal(0));
+		
+		shoppingCartRepository.save(shoppingCart);
+	}
 
 }
