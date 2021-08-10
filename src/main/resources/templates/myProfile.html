@@ -79,7 +79,7 @@
 										<div class="form-group">
 											<label for="currentPassword">Current Password</label> ' <input
 												type="password" class="form-control" id="currentPassword"
-												name="currentPassword" th:value="${currentPassword}" />
+												name="password" th:value="${currentPassword}" />
 										</div>
 										<p style="color: #828282">Enter your current password to
 											change the email address or password.</p>
@@ -96,7 +96,8 @@
 											notification.</p>
 
 										<div class="form-group">
-											<label for="txtNewPassword">Password</label> ' <input
+											<label for="txtNewPassword">Password</label>&nbsp;<span id = "checkPasswordMatch" style = "color: red"></span>
+											<input
 												type="password" class="form-control" id="txtNewPassword"
 												name="newPassword" />
 										</div>
@@ -108,7 +109,7 @@
 										<p style="color: #828282">To change the current user
 											password, enter the new password in both fields.</p>
 
-										<button type="submit" class="btn btn-primary">Save All</button>
+										<button id = "updateUserInfoButton" type="submit" class="btn btn-primary">Save All</button>
 									</form>
 								</div>
 							</div>
