@@ -46,7 +46,7 @@
 							<div class="row">
 								<div class="col-xs-7 text-left">Estimated tax:</div>
 								<div class="col-xs-5 text-right">
-									$<span th:with="tax=${shoppingCart.grandTotal+shoppingCart.grandTotal*0.06}"
+									$<span th:with="tax=${shoppingCart.grandTotal*0.06}"
 											th:text="${#numbers.formatDecimal(tax, 0 ,2)}"></span>
 								</div>
 							</div>
@@ -102,8 +102,7 @@
 												<td
 													th:text="${userShipping.userShippingStreet1}+' '+${userShipping.userShippingStreet2}+', '+${userShipping.userShippingCity}
 												+', '+${userShipping.userShippingState}"></td>
-												<td><a
-													th:href="@{/setShippingAddress(userShippingId=${userShipping.id})}">use
+												<td><a th:href="@{/setShippingAddress(userShippingId=${userShipping.id})}">use
 														this address</a></td>
 											</tr>
 										</tbody>
@@ -142,7 +141,7 @@
 											<div class="form-group">
 												<label for="shippingState">* State</label> <select
 													id="shippingState" class="form-control"
-													th:name="shippingAddresstate"
+													th:name="shippingAddressState"
 													th:value="${shippingAddress.shippingAddressState}"
 													required="required">
 													<option value="" disabled="disabled">Please select
@@ -289,15 +288,15 @@
 
 									<!-- Billing Address -->
 									<div class="checkbox">
-										<label> <input id="theSameAsShippingAddress" 
+										<label> <input id="theSameAsShippingAddress"
 											type="checkbox" name="billingSameAsShipping" value="true" />
 											The same as shipping address
 										</label>
 									</div>
 
 									<div class="form-group">
-										<label for="billingName">* Name</label> <input type="text" class = "billingAddress"
-											class="form-control" id="billingName"
+										<label for="billingName">* Name</label> <input type="text"
+											class="form-control billingAddress" id="billingName"
 											placeholder="Receiver Name" th:name="billingAddressName"
 											required="required"
 											th:value="${billingAddress.billingAddressName}" />
@@ -328,7 +327,7 @@
 											<div class="form-group">
 												<label for="billingState">* State</label> <select
 													id="billingState" class="form-control billingAddress"
-													th:name="billingAddress"
+													th:name="billingAddressState"
 													th:value="${billingAddress.billingAddressState}"
 													required="required">
 													<option value="" disabled="disabled">Please select
@@ -429,6 +428,7 @@
 											</div>
 										
 									</div>
+
 									<hr />
 									<h4 class="col-xs-12 text-right">
 										<strong style="font-size: large;">Order Total (<span

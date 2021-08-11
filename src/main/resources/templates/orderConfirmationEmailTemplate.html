@@ -38,7 +38,7 @@
 	<tr>
 		<td>
 			<span th:text="${order.billingAddress.billingAddressName}"></span><br/>
-			<span th:text="${order.billingAddress.billingAddressStreet1}+' '+${order.billingAddres.billingAddressStreet2}"></span><br/>
+			<span th:text="${order.billingAddress.billingAddressStreet1}+' '+${order.billingAddress.billingAddressStreet2}"></span><br/>
 			<span th:text="${order.billingAddress.billingAddressCity}"></span><br/>
 			<span th:text="${order.billingAddress.billingAddressState}"></span><br/>
 			<span th:text="${order.billingAddress.billingAddressZipcode}"></span><br/>
@@ -52,7 +52,7 @@
 		</td>
 		<td>
 			<span th:text="${order.shippingAddress.shippingAddressName}"></span><br/>
-			<span th:text="${order.shippingAddress.shippingAddressStreet1}+' '+${order.billingAddres.shippingAddressStreet2}"></span><br/>
+			<span th:text="${order.shippingAddress.shippingAddressStreet1}+' '+${order.shippingAddress.shippingAddressStreet2}"></span><br/>
 			<span th:text="${order.shippingAddress.shippingAddressCity}"></span><br/>
 			<span th:text="${order.shippingAddress.shippingAddressState}"></span><br/>
 			<span th:text="${order.shippingAddress.shippingAddressZipcode}"></span><br/>
@@ -72,10 +72,10 @@
 </thead>
 <tbody>
 	<tr th:each="cartItem : ${cartItemList}">
-		<td><span data-th-text="#{cartItem.book.title}"></span></td>
-		<td class="text-center" data-th-text="#{cartItem.book.ourPrice}"></td>
-		<td class="text-center" data-th-text="#{cartItem.qty}"></td>
-		<td class="text-right" data-th-text="#{cartItem.book.subTotal}"></td>
+		<td><span data-th-text="${cartItem.book.title}"></span></td>
+		<td class="text-center" data-th-text="${cartItem.book.ourPrice}"></td>
+		<td class="text-center" data-th-text="${cartItem.qty}"></td>
+		<td class="text-right" data-th-text="${cartItem.subtotal}"></td>
 	</tr>
 	<tr>
 		<td class="highrow"></td>

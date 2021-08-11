@@ -39,10 +39,10 @@ public class UserServiceImpl implements UserService{
 	private UserPaymentRepository userPaymentRepository;
 	
 	@Autowired
-	private PasswordResetTokenRepository passwordResetTokenRepository;
+	private UserShippingRepository userShippingRepository;
 	
 	@Autowired
-	private UserShippingRepository userShippingRepository;
+	private PasswordResetTokenRepository passwordResetTokenRepository;
 	
 	@Override
 	public PasswordResetToken getPasswordResetToken(final String token) {
@@ -66,24 +66,24 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public User findByEmail(String email) {
+	public User findByEmail (String email) {
 		return userRepository.findByEmail(email);
 	}
 	
 	@Override
 	@Transactional
-	public User createUser(User user, Set<UserRole> userRoles) throws Exception {
+	public User createUser(User user, Set<UserRole> userRoles){
 		User localUser = userRepository.findByUsername(user.getUsername());
-		
+		System.out.println(localUser);
 		if(localUser != null) {
-			LOG.info("User {} already exists. Nothing will be done", user.getUsername());
-		}else {
-			for(UserRole ur : userRoles) {
-				//extends CURDRepository, save input user information to Role table
+			LOG.info("user {} already exists. Nothing will be done.", user.getUsername());
+		} else {
+			System.out.println(userRoles);
+			for (UserRole ur : userRoles) {
+				System.out.println("---------------"+ur.getRole());
 				roleRepository.save(ur.getRole());
 			}
 			
-			//append all input to the userRole set returned by getUserRoles() function
 			user.getUserRoles().addAll(userRoles);
 			
 			ShoppingCart shoppingCart = new ShoppingCart();
@@ -115,7 +115,7 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public void updateUserShipping(UserShipping userShipping, User user) {
+	public void updateUserShipping(UserShipping userShipping, User user){
 		userShipping.setUser(user);
 		userShipping.setUserShippingDefault(true);
 		user.getUserShippingList().add(userShipping);
@@ -125,8 +125,8 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void setUserDefaultPayment(Long userPaymentId, User user) {
 		List<UserPayment> userPaymentList = (List<UserPayment>) userPaymentRepository.findAll();
-	
-		for(UserPayment userPayment: userPaymentList) {
+		
+		for (UserPayment userPayment : userPaymentList) {
 			if(userPayment.getId() == userPaymentId) {
 				userPayment.setDefaultPayment(true);
 				userPaymentRepository.save(userPayment);
@@ -138,10 +138,10 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public void setUserDefaultShipping(Long userShippingId, User user){
+	public void setUserDefaultShipping(Long userShippingId, User user) {
 		List<UserShipping> userShippingList = (List<UserShipping>) userShippingRepository.findAll();
 		
-		for(UserShipping userShipping: userShippingList) {
+		for (UserShipping userShipping : userShippingList) {
 			if(userShipping.getId() == userShippingId) {
 				userShipping.setUserShippingDefault(true);
 				userShippingRepository.save(userShipping);
@@ -151,4 +151,5 @@ public class UserServiceImpl implements UserService{
 			}
 		}
 	}
+
 }
