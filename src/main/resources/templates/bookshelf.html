@@ -25,7 +25,18 @@
 			style="margin-top: -75px;" />
 
 		<div class="row" style="margin-top: 60px;">
-			<div class="col-xs-9 col-xs-offset-3">
+		<div class="col-xs-3">
+				<h3><label for="category">Category</label></h3>
+				<div class="list-group" id="category">
+					<a th:href="@{/bookshelf(category='all')}" th:classappend="${activeAll}? 'active'" class="list-group-item">All</a>
+					<a th:href="@{/searchByCategory(category='Management')}" th:classappend="${activeManagement}? 'active'" class="list-group-item">Management</a>
+					<a th:href="@{/searchByCategory(category='Fiction')}" th:classappend="${activeFiction}? 'active'" class="list-group-item">Fiction</a>
+					<a th:href="@{/searchByCategory(category='Engineering')}" th:classappend="${activeEngineering}? 'active'" class="list-group-item">Engineering</a>
+					<a th:href="@{/searchByCategory(category='Programming')}" th:classappend="${activeProgramming}? 'active'" class="list-group-item">Programming</a>
+					<a th:href="@{/searchByCategory(category='Arts &amp; Literature')}" th:classappend="${activeArtsLiterature}? 'active'" class="list-group-item">Arts &amp; Literature</a>
+				</div>
+			</div>
+			<div class="col-xs-9">
 				<div th:if="${emptyList}">
 					<h5 style="font-style: italic;">Oops, no result is found. Try
 						something else or try again later.</h5>
@@ -75,7 +86,7 @@
 		</div>
 	</div>
 	<!-- end of container -->
-
+	<div th:replace="common/header :: footer"/>
 
 	<div th:replace="common/header :: body-bottom-scripts" />
 	

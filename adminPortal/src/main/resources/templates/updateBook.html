@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
 <head th:replace="common/header :: common-header" />
@@ -196,8 +195,8 @@
 						<label class="col-md-2 control-label" for="status">Status</label>
 						<div class="col-md-8">
 							<label><input value="true" type="radio" name="active"
-								checked="checked" /> Active </label> <label><input
-								value="false" type="radio" name="active" />
+								th:checked="${book.active}" /> Active </label> <label><input
+								value="false" type="radio" name="active" th:checked="${!book.active}"/>
 								Inactive </label> <span class="help-block">Whether the book is
 								active or inactive</span>
 						</div>
@@ -238,6 +237,6 @@
 	</div>
 
 
-	<!--  <div th:replace="common/header :: body-bottom-scripts" />-->
+	<div th:replace="common/header :: body-bottom-scripts" />
 </body>
 </html>

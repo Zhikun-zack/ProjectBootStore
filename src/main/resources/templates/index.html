@@ -24,10 +24,10 @@
 <body>
 	<div th:replace="common/header :: navbar"></div>
 	<div class="container box">
-		<div class="row">
+		<div class="row banner">
 			<!-- carousel -->
 			<div class="col-xs-8">
-				<div class="panel panel-default">
+				<div class="panel panel-default" style="margin-top: 20px;">
 					<div class="panel-body">
 						<div id="carousel-example-generic" class="carousel slide"
 							data-ride="carousel">
@@ -81,21 +81,21 @@
 		<div class = "col-xs-4">
 			<div class = "panel panel-default">
 				<div class = "panel-body">
-					<img src = "image/bestseller.png" class = "img-responsive" />
+					<a th:href="@{/bookshelf}"><img src = "image/bestseller.png" class = "img-responsive" /></a>
 				</div>
 			</div>
 		</div>
 		<div class = "col-xs-4">
 			<div class = "panel panel-default">
 				<div class = "panel-body">
-					<img src = "image/hours.png" class = "img-responsive" />
+					<a th:href="@{/hours}"><img src = "image/hours.png" class = "img-responsive" /></a>
 				</div>
 			</div>
 		</div>
 		<div class = "col-xs-4">
 			<div class = "panel panel-default">
 				<div class = "panel-body">
-					<img src = "image/faq.png" class = "img-responsive" />
+					<a th:href="@{/faq}"><img src = "image/faq.png" class = "img-responsive" /></a>
 				</div>
 			</div>
 		</div>
@@ -117,31 +117,81 @@
 
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
-				<img src = "./image/shelf.png" class = "img-responsive" />
-				<div class = "carousel_caption">
 					<div class="item active">
-							<div class = "row">
-								<div class="col-xs-2"><img class = "img-represensive" src = "/image/book1.png" /></div>
-								<div class="col-xs-2"><img class = "img-represensive" src = "/image/book1.png" /></div>
-								<div class="col-xs-2"><img class = "img-represensive" src = "/image/book1.png" /></div>
-								<div class="col-xs-2"><img class = "img-represensive" src = "/image/book1.png" /></div>
-								<div class="col-xs-2"><img class = "img-represensive" src = "/image/book1.png" /></div>
-								<div class="col-xs-2"><img class = "img-represensive" src = "/image/book1.png" /></div>
+						<img src="/image/shelf.png" class="img-responsive" />
+						<div class="carousel-caption">
+							<div class="row">
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
 							</div>
 						</div>
-				</div>
-				<img src = "./image/shelf.png" class = "img-responsive" />
-				<div class = "carousel_caption">
-					<div class="item active">
-							<div class = "row">
-								<div class="col-xs-2"><img class = "img-represensive" src = "/image/book1.png" /></div>
-								<div class="col-xs-2"><img class = "img-represensive" src = "/image/book1.png" /></div>
-								<div class="col-xs-2"><img class = "img-represensive" src = "/image/book1.png" /></div>
-								<div class="col-xs-2"><img class = "img-represensive" src = "/image/book1.png" /></div>
-								<div class="col-xs-2"><img class = "img-represensive" src = "/image/book1.png" /></div>
-								<div class="col-xs-2"><img class = "img-represensive" src = "/image/book1.png" /></div>
+					</div>
+					<div class="item">
+						<img src="/image/shelf.png" class="img-responsive" />
+						<div class="carousel-caption">
+							<div class="row">
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
 							</div>
 						</div>
+					</div>
+					<div class="item">
+						<img src="/image/shelf.png" class="img-responsive" />
+						<div class="carousel-caption">
+							<div class="row">
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+								<div class="col-xs-2">
+									<img class="img-responsive" src="/image/book1.png" />
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<!-- Controls -->
@@ -158,7 +208,8 @@
 		</div>
 	</div>
 <!-- 	end of container -->
+	<div th:replace="common/header :: footer"/>
+	<!-- <div th:replace="common/header :: body-bottom-scripts" /> -->
 	
-<!-- 	<div th:replace="common/header:: body-bottom-scripts"></div>			 -->
 </body>
 </html>
